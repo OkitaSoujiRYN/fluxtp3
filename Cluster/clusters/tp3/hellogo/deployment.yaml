@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hellogo
+  name: hellogo-deployment
   namespace: default
 spec:
   replicas: 2
@@ -14,7 +14,15 @@ spec:
         app: web
     spec:
       containers:
-      - name: web
-        image: 494013786575.dkr.ecr.us-east-1.amazonaws.com/hellogo:latest
-        ports:
-        - containerPort: 8080
+       - name: web
+         image: 494013786575.dkr.ecr.us-east-1.amazonaws.com/hellogo:latest
+         ports:
+          - containerPort: 8080
+         resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        
