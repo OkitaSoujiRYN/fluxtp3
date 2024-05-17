@@ -2,20 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hellogo
-  labels:
-    app: hellogo
+  namespace: default
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: hellogo
+      app: web
   template:
     metadata:
       labels:
-        app: hellogo
+        app: web
     spec:
       containers:
-      - name: hellogo
-        image: hellogo:d10fa0c0452b73cc75d1b15b4777ca1f2bd07bad01c1698e45bb119b65b2ccec
+      - name: web
+        image: 494013786575.dkr.ecr.us-east-1.amazonaws.com/hellogo:latest
         ports:
-        - containerPort: 8080  # Assurez-vous que ce port est le bon pour votre application
+        - containerPort: 8080
