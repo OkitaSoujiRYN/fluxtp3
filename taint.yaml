@@ -1,0 +1,24 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+ name: tp3-cluster
+ region: us-east-1
+nodeGroups:
+ - name: ng-app
+ instanceType: t3a.medium
+ desiredCapacity: 1
+ volumeSize: 80
+ iam:
+ instanceRoleARN: arn:aws:iam::328411655276:role/LabRole
+ - name: ng-infra
+ instanceType: t3a.medium
+ desiredCapacity: 1
+ volumeSize: 80
+ iam:
+ instanceRoleARN: arn:aws:iam::328411655276:role/LabRole
+ taints:
+ - key: infra
+ value: "true"
+ effect: NoSchedule
+iam:
+ serviceRoleARN: arn:aws:iam::328411655276:role/LabRole
